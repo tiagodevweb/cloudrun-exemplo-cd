@@ -2,11 +2,11 @@ steps:
 
   # Install 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/fullcycle-exemplos/django-cloudrun:$SHORT_SHA', '-f','Dockerfile.prod','.']
+    args: ['build', '-t', 'gcr.io/fullcycle-exemplos1/django-cloudrun:$SHORT_SHA', '-f','Dockerfile.prod','.']
 
   # Running container
   - name: 'docker'
-    args: ['run','-d', '--name','django','gcr.io/fullcycle-exemplos/django-cloudrun:$SHORT_SHA']
+    args: ['run','-d', '--name','django','gcr.io/fullcycle-exemplos1/django-cloudrun:$SHORT_SHA']
 
   # Migrations
   - name: 'docker'
@@ -18,8 +18,8 @@ steps:
 
   # Pushing image to gcr
   - name: 'docker'
-    args: ['push', 'gcr.io/fullcycle-exemplos/django-cloudrun:$SHORT_SHA']
+    args: ['push', 'gcr.io/fullcycle-exemplos1/django-cloudrun:$SHORT_SHA']
 
   # Deploy container image to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'deploy', 'django-cloudrun', '--image', 'gcr.io/fullcycle-exemplos/django-cloudrun:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
+    args: ['run', 'deploy', 'django-cloudrun', '--image', 'gcr.io/fullcycle-exemplos1/django-cloudrun:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
